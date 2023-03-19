@@ -5,7 +5,7 @@ from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Post, Comment
-# from .permissions import IsOwnerOrReadOnly
+
 from .serializers import (
     UserSerializer, PostSerializer, CommentSerializer
 )
@@ -59,36 +59,6 @@ class PostDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticated]
-
-# class LikeView(APIView):
-#     serializer_class = LikeSerializer
-#     permission_classes = [permissions.IsAuthenticated]
-
-#     def post(self, request, pk):
-#         post = get_object_or_404(Post, pk=pk)
-#         user = request.user
-
-#         if user in post.likes.all():
-#             raise ValidationError('Already liked')
-
-#         post.likes.add(user)
-#         serializer = self.serializer_class(post)
-#         return Response(serializer.data, status=status.HTTP_200_OK)
-
-# class UnlikeView(APIView):
-#     serializer_class = LikeSerializer
-#     permission_classes = [permissions.IsAuthenticated]
-
-#     def post(self, request, pk):
-#         post = get_object_or_404(Post, pk=pk)
-#         user = request.user
-
-#         if user not in post.likes.all():
-#             raise ValidationError('Not liked')
-
-#         post.likes.remove(user)
-#         serializer = self.serializer_class(post)
-#         return Response(serializer.data, status=status.HTTP_200_OK)
 
 class CommentView(generics.CreateAPIView):
     serializer_class = CommentSerializer
