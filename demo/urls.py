@@ -11,8 +11,6 @@ urlpatterns = [
     path('api/user/', views.UserProfileView.as_view(), name='user-profile'),
     path('api/posts/', views.CreatePostView.as_view(), name='create-post'),
     path('api/posts/<int:pk>/', views.PostDetailView.as_view(), name='post-detail'),
-    # path('api/posts/<int:pk>/like/', views.LikeView.as_view(), name='like'),
-    # path('api/posts/<int:pk>/unlike/', views.UnlikeView.as_view(), name='unlike'),
     path('api/posts/<int:pk>/comment/', views.CommentView.as_view(), name='comment'),
     path('api/all_posts/', views.AllPostsView.as_view(), name='all-posts'),
 ]
